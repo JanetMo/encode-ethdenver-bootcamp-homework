@@ -31,20 +31,21 @@ contract VolcanoCoin {
         address recipient;
     }
 
-    // Next, create a modifier which only allows an owner to execute certain functions
-    modifier onlyOwner() {
-        require(msg.sender == owner, "This is an owner only function");
-        _;
-    }
+
     // The contract owner's address should only be updateable in one place
     // Create a constructor and within the constructor, store the owner's address
-
     constructor() {
         owner = msg.sender;
         balances[owner] = totalSupply;
     }
 
- // Make a public function that returns the total supply
+    // Next, create a modifier which only allows an owner to execute certain functions
+    modifier onlyOwner() {
+        require(msg.sender == owner, "This is an owner only function");
+        _;
+    }
+
+    // Make a public function that returns the total supply
     function getTotalSupply() public view returns (uint256) {
         return totalSupply;
     }
